@@ -16,8 +16,9 @@
   <tbody>
     <tr *ngFor= "let phone of phonesList">
       <th class="card-text">
-        <input type="email" class="form-control" [(ngModel)]="phone.phoneNumber"
-          style="text-align:center" placeholder={{phone.phoneNumber}}>
+        <input type="text" class="form-control" [(ngModel)]="phone.phoneNumber"
+          style="text-align:center" placeholder={{phone.phoneNumber}}
+          maxlength="12">
       </th>
       <th class="card-text">
         <select class="form-control" [(ngModel)]="phone.phoneNumberTypeID">
@@ -27,17 +28,18 @@
         </select>
       </th>
       <th>
-        <button (click)=editPersonPhone(phone) class="btn btn-dark col-md-5">Editar</button>
+        <button (click)=editPersonPhone(phone) *ngIf="phone.businessEntityID" class="btn btn-dark col-md-5">Editar</button>
+        <button (click)=insertPersonPhone(phone) *ngIf="!phone.businessEntityID"class="btn btn-dark col-md-5">Criar</button>
       </th>
       <th>
-        <button (click)=deletePersonPhone(phone.businessEntityID) class="btn btn-danger col-md-5">Deletar</button>
+        <button (click)=deletePersonPhone(phone.businessEntityID) *ngIf="phone.businessEntityID" class="btn btn-danger col-md-5">Deletar</button>
       </th>
     </tr>
   </tbody>
 </table>
 
 <button (click)=goToCustomerPage() class="btn btn-secondary col-md-1 mr-2">Voltar</button>
-<button (click)=insertPersonPhone() class="btn btn-dark col-md-1">Inserir Novo</button>
+<button (click)=criarPersonPhone() class="btn btn-dark col-md-1">Inserir Novo</button>
 
 
 

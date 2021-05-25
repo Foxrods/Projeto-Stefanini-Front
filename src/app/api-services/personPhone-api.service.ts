@@ -46,4 +46,17 @@ export class PersonPhoneApiService {
 			});
 		});
   }
+
+  public insertPersonPhone(personPhone: PersonPhone): Promise<any>{
+    return new Promise((resolve, reject) => {
+			this.http.post(
+				`http://localhost:5000/api/PersonPhone/`,
+        personPhone
+			).subscribe((resposta: any) => {
+				resolve(resposta);
+			}, (erro) => {
+				reject(erro);
+			});
+		});
+  }
 }
