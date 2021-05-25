@@ -1,0 +1,34 @@
+<div class="card-header text-white bg-secondary">
+  <h5>
+    Lista de telefones
+  </h5>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Número do Telefone</th>
+      <th scope="col">Tipo de Número</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Deletar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor= "let phone of phonesList">
+      <th class="card-text">{{phone.phoneNumber}}</th>
+      <th class="card-text">{{phone.phoneNumberType.name}}</th>
+      <th>
+        <button (click)=goToCustomerPage() class="btn btn-dark col-md-4">Editar</button>
+      </th>
+      <th>
+        <button (click)=deletePersonPhone(phone.businessEntityID) class="btn btn-danger col-md-4">Deletar</button>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)=goToCustomerPage() class="btn btn-secondary col-md-1 mr-2">Voltar</button>
+<button (click)=goToCustomerPage() class="btn btn-dark col-md-1">Criar</button>
+
+
+
