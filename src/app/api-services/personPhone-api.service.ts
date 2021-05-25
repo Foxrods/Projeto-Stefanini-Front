@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PersonPhone } from '../models/personPhone.model';
 import { PersonPhoneResponse } from '../models/personPhoneResponse.model';
 
 @Injectable({
@@ -25,6 +26,19 @@ export class PersonPhoneApiService {
     return new Promise((resolve, reject) => {
 			this.http.delete(
 				`http://localhost:5000/api/PersonPhone/`+id
+			).subscribe((resposta: any) => {
+				resolve(resposta);
+			}, (erro) => {
+				reject(erro);
+			});
+		});
+  }
+
+  public editPersonPhone(personPhone: PersonPhone): Promise<any>{
+    return new Promise((resolve, reject) => {
+			this.http.put(
+				`http://localhost:5000/api/PersonPhone/`,
+        personPhone
 			).subscribe((resposta: any) => {
 				resolve(resposta);
 			}, (erro) => {

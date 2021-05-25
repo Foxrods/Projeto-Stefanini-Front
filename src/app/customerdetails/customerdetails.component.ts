@@ -16,6 +16,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   public phonesList: PersonPhone[];
   public inserir: boolean = false;
+  public editar: boolean = false;
 
   constructor(private personPhoneApiService: PersonPhoneApiService, private activeRoute: ActivatedRoute, private router : Router) { }
 
@@ -50,6 +51,21 @@ export class CustomerdetailsComponent implements OnInit {
 
   insertPersonPhone(){
     this.inserir = true;
+  }
+
+  editPersonPhone(phone: PersonPhone){
+
+    let body = new PersonPhone();
+    body.businessEntityID = phone.businessEntityID;
+    body.phoneNumberTypeID = phone.phoneNumberTypeID;
+    body.personID = phone.personID;
+    body.phoneNumber = phone.phoneNumber;
+
+    this.personPhoneApiService.editPersonPhone(body).then(
+      (resposta: any) => {
+        this.getCustomerDetails();
+      }
+    );
   }
 
   goToCustomerPage() : void {
