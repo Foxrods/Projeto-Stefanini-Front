@@ -7,8 +7,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Número do Telefone</th>
       <th scope="col">Tipo de Número</th>
+      <th scope="col">Número do Telefone</th>
       <th scope="col">Editar</th>
       <th scope="col">Deletar</th>
     </tr>
@@ -16,16 +16,21 @@
   <tbody>
     <tr *ngFor= "let phone of phonesList">
       <th class="card-text">
-        <input type="text" class="form-control" [(ngModel)]="phone.phoneNumber"
-          style="text-align:center" placeholder={{phone.phoneNumber}}
-          maxlength="12">
-      </th>
-      <th class="card-text">
         <select class="form-control" [(ngModel)]="phone.phoneNumberTypeID">
           <option selected disabled hidden>{{phone.phoneNumberType.name}}</option>
           <option value=1>Local phone</option>
           <option value=2>Cellphone</option>
         </select>
+      </th>
+      <th class="card-text" *ngIf="phone.phoneNumberTypeID == 1" >
+        <input type ="text" class="form-control" [(ngModel)]="phone.phoneNumber"
+          style="text-align:center" placeholder={{phone.phoneNumber}}
+          maxlength="15" mask="(00)0000-0000">
+      </th>
+      <th class="card-text" *ngIf="phone.phoneNumberTypeID != 1" >
+        <input type ="text" class="form-control" [(ngModel)]="phone.phoneNumber"
+          style="text-align:center" placeholder={{phone.phoneNumber}}
+          maxlength="15" mask="(00)00000-0000">
       </th>
       <th>
         <button (click)=editPersonPhone(phone) *ngIf="phone.businessEntityID" class="btn btn-dark col-md-5">Editar</button>
