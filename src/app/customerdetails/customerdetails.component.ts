@@ -13,8 +13,9 @@ import { PersonPhoneApiService } from '../api-services/personPhone-api.service';
   styleUrls: ['./customerdetails.component.css']
 })
 export class CustomerdetailsComponent implements OnInit {
-  customerDetails: CustomerDetails = null;
-  phonesList: PersonPhone[];
+
+  public phonesList: PersonPhone[];
+  public inserir: boolean = false;
 
   constructor(private personPhoneApiService: PersonPhoneApiService, private activeRoute: ActivatedRoute, private router : Router) { }
 
@@ -45,6 +46,10 @@ export class CustomerdetailsComponent implements OnInit {
         this.getCustomerDetails();
       }
     );
+  }
+
+  insertPersonPhone(){
+    this.inserir = true;
   }
 
   goToCustomerPage() : void {

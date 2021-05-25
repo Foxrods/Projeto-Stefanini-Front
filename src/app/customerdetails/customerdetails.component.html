@@ -18,7 +18,7 @@
       <th class="card-text">{{phone.phoneNumber}}</th>
       <th class="card-text">{{phone.phoneNumberType.name}}</th>
       <th>
-        <button (click)=goToCustomerPage() class="btn btn-dark col-md-4">Editar</button>
+        <button (click)=editPersonPhone(phone) class="btn btn-dark col-md-4">Editar</button>
       </th>
       <th>
         <button (click)=deletePersonPhone(phone.businessEntityID) class="btn btn-danger col-md-4">Deletar</button>
@@ -28,7 +28,8 @@
 </table>
 
 <button (click)=goToCustomerPage() class="btn btn-secondary col-md-1 mr-2">Voltar</button>
-<button (click)=goToCustomerPage() class="btn btn-dark col-md-1">Criar</button>
+<button (click)=insertPersonPhone() class="btn btn-dark col-md-1">Inserir Novo</button>
+
 
 
 
