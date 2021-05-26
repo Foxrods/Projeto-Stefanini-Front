@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerDetails } from '../customerdetails'
-import { DataService } from '../data.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router'
 import { PersonPhone } from '../models/personPhone.model';
@@ -71,7 +69,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   insertPersonPhone(phone: PersonPhone){
     if(phone.phoneNumber == "" || phone.phoneNumberTypeID == 0){
-      this.toastr.error("Preencha todos os campos", 'Mensagem!', this.options);
+      this.toastr.error("Preencha todos os campos", 'Erro!', this.options);
       return;
     }
     this.activeRoute.params.subscribe(routeParams => {
@@ -93,7 +91,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   editPersonPhone(phone: PersonPhone){
     if(phone.phoneNumber == ""){
-      this.toastr.error("Preencha todos os campos", 'Mensagem!', this.options);
+      this.toastr.error("Preencha todos os campos", 'Erro!', this.options);
       return;
     }
     let body = new PersonPhone();
