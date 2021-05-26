@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service'
-import { Customer } from '../customer';
 import { Router } from '@angular/router'
 import { PersonApiService } from '../api-services/person-api.service';
 import { PersonResponse } from '../models/personResponse.model';
@@ -12,8 +10,7 @@ import { Person } from '../models/person.model';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  customers: Customer[] = [];
-  selectedCustomer : string = "temp";
+
   public personsList: Person[];
 
   constructor(private personApiService: PersonApiService, private router:Router) { }
@@ -31,10 +28,6 @@ export class CustomersComponent implements OnInit {
         }
       }
     );
-  }
-
-  setSelectedCustomer( cust : string ): void {
-    this.selectedCustomer = cust ;
   }
 
   goToDetailsPage(id : number) : void {

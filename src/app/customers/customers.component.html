@@ -6,7 +6,7 @@
 <div class="col-md-12 centeralign">
   <div class="card centeralign addmargin" style="width: 20rem;" *ngFor="let person of personsList">
       <li class="list-group-item">
-        <div class="card-body" (click) = setSelectedCustomer(person.name)>
+        <div class="card-body">
           <h5 class="card-title">{{person.name}}</h5>
           <button (click)=goToDetailsPage(person.businessEntityID) class="btn btn-secondary">Telefones</button>
         </div>

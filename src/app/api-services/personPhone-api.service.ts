@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PersonPhone } from '../models/personPhone.model';
 import { PersonPhoneResponse } from '../models/personPhoneResponse.model';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PersonPhoneApiService {
   public getPersonPhones(id: number): Promise<PersonPhoneResponse>{
     return new Promise((resolve, reject) => {
 			this.http.get(
-				`http://localhost:5000/api/Person/Phones/`+id
+				`${environment.api_url}/Person/Phones/`+id
 			).subscribe((resposta: PersonPhoneResponse) => {
 				resolve(resposta);
 			}, (erro) => {
@@ -25,7 +26,7 @@ export class PersonPhoneApiService {
   public deletePersonPhone(id: number): Promise<any>{
     return new Promise((resolve, reject) => {
 			this.http.delete(
-				`http://localhost:5000/api/PersonPhone/`+id
+				`${environment.api_url}/PersonPhone/`+id
 			).subscribe((resposta: any) => {
 				resolve(resposta);
 			}, (erro) => {
@@ -37,7 +38,7 @@ export class PersonPhoneApiService {
   public editPersonPhone(personPhone: PersonPhone): Promise<any>{
     return new Promise((resolve, reject) => {
 			this.http.put(
-				`http://localhost:5000/api/PersonPhone/`,
+				`${environment.api_url}/PersonPhone/`,
         personPhone
 			).subscribe((resposta: any) => {
 				resolve(resposta);
@@ -50,7 +51,7 @@ export class PersonPhoneApiService {
   public insertPersonPhone(personPhone: PersonPhone): Promise<any>{
     return new Promise((resolve, reject) => {
 			this.http.post(
-				`http://localhost:5000/api/PersonPhone/`,
+				`${environment.api_url}/PersonPhone/`,
         personPhone
 			).subscribe((resposta: any) => {
 				resolve(resposta);
