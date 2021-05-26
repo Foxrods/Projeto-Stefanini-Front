@@ -1,5 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
+@import '~ngx-toastr/toastr.css';
+
+.toast-info{
+  background-color: rgb(52, 58, 64);
+}
+.toast-error{
+  background-color: rgb(220, 53, 69);
+}
+
 
 .centeralign {
   display: block;

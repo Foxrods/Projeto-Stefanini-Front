@@ -7,6 +7,7 @@ import { PersonPhone } from '../models/personPhone.model';
 import { PersonPhoneResponse } from '../models/personPhoneResponse.model';
 import { PersonPhoneApiService } from '../api-services/personPhone-api.service';
 import { PhoneNumberType } from '../models/phoneNumberType.model';
+import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-customerdetails',
@@ -16,10 +17,16 @@ import { PhoneNumberType } from '../models/phoneNumberType.model';
 export class CustomerdetailsComponent implements OnInit {
 
   public phonesList: PersonPhone[];
-  public inserir: boolean = false;
-  public editar: boolean = false;
+  public message: any;
+  options: IndividualConfig;
 
-  constructor(private personPhoneApiService: PersonPhoneApiService, private activeRoute: ActivatedRoute, private router : Router) { }
+  constructor(private personPhoneApiService: PersonPhoneApiService,
+                      private activeRoute: ActivatedRoute,
+                      private router : Router,
+                      private toastr: ToastrService)
+                      { this.options = this.toastr.toastrConfig;
+                        this.options.positionClass = 'toast-top-right';
+                        this.options.timeOut = 2000;}
 
   ngOnInit() {
     this.getCustomerDetails();
@@ -46,6 +53,8 @@ export class CustomerdetailsComponent implements OnInit {
     this.personPhoneApiService.deletePersonPhone(id).then(
       (resposta: any) => {
         this.getCustomerDetails();
+        this.message = resposta.mensagem;
+        this.toastr.info(resposta.mensagem, 'Mensagem!', this.options);
       }
     );
   }
@@ -62,6 +71,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   insertPersonPhone(phone: PersonPhone){
     if(phone.phoneNumber == "" || phone.phoneNumberTypeID == 0){
+      this.toastr.error("Preencha todos os campos", 'Mensagem!', this.options);
       return;
     }
     this.activeRoute.params.subscribe(routeParams => {
@@ -73,6 +83,8 @@ export class CustomerdetailsComponent implements OnInit {
       this.personPhoneApiService.insertPersonPhone(body).then(
         (resposta: any) => {
           this.getCustomerDetails();
+          this.message = resposta.mensagem;
+          this.toastr.info(resposta.mensagem, 'Mensagem!', this.options);
         }
       );
     });
@@ -81,6 +93,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   editPersonPhone(phone: PersonPhone){
     if(phone.phoneNumber == ""){
+      this.toastr.error("Preencha todos os campos", 'Mensagem!', this.options);
       return;
     }
     let body = new PersonPhone();
@@ -92,6 +105,8 @@ export class CustomerdetailsComponent implements OnInit {
     this.personPhoneApiService.editPersonPhone(body).then(
       (resposta: any) => {
         this.getCustomerDetails();
+        this.message = resposta.mensagem;
+        this.toastr.info(resposta.mensagem, 'Mensagem!', this.options);
       }
     );
   }
